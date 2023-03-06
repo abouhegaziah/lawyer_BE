@@ -1,8 +1,8 @@
-const Case = require("../models/case.js");
+const Blog = require("../models/blog.js");
 const Joi = require("joi");
 
 const index = (req, res) => {
-  Case.find()
+  Blog.find()
     .then((response) => {
       return res.status(200).send({
         response,
@@ -15,7 +15,7 @@ const index = (req, res) => {
     });
 };
 
-const addCase = (req, res) => {
+const addBlog = (req, res) => {
   // const schema = Joi.object()
   //   .keys({
   //     name: Joi.string().required(),
@@ -44,28 +44,20 @@ const addCase = (req, res) => {
   //   res.json({ exitCode: 1, message: validation.error.details[0].message });
   //   return;
   // }
-  console.log(req.body);
-  var c = new Case({
-    name_1: req.body.name_1,
-    number_1: req.body.number_1,
-    email_1: req.body.email_1,
-    address_1: req.body.address_1,
-    name_2: req.body.name_2,
-    number_2: req.body.number_2,
-    email_2: req.body.email_2,
-    address_2: req.body.address_2,
-    subject: req.body.subject,
-    case: req.body.case,
+  var blog = new Blog({
+    image: req.body.image,
+    title: req.body.title,
+    post: req.body.post,
   });
 
-  c.save()
+  blog
+    .save()
     .then((response) => {
       return res.status(200).send({
         response,
       });
     })
     .catch((error) => {
-      console.log(error);
       if (error.code == 11000)
         return res.status(300).send({
           message: "E-mail or phone number is used before",
@@ -79,5 +71,5 @@ const addCase = (req, res) => {
 
 module.exports = {
   index,
-  addCase,
+  addBlog,
 };
