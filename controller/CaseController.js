@@ -1,5 +1,6 @@
 const Case = require("../models/case.js");
 const Joi = require("joi");
+var nodemailer = require("nodemailer");
 
 const index = (req, res) => {
   Case.find()
@@ -60,6 +61,28 @@ const addCase = (req, res) => {
 
   c.save()
     .then((response) => {
+      var transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "omar.abouhegaziah@gmail.com",
+          pass: "oapkkgynnxdubvdh",
+        },
+      });
+
+      var mailOptions = {
+        from: "omar.abouhegaziah@gmail.com",
+        to: "afwmalaky@gmail.com",
+        subject: "New Case - " + req.body.subject,
+        text: req.body.case,
+      };
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
       return res.status(200).send({
         response,
       });
