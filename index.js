@@ -8,6 +8,7 @@ var cors = require("cors");
 const CaseRoute = require("./routes/Case");
 const DataRoute = require("./routes/Data");
 const BlogRoute = require("./routes/Blog");
+const EpisodeRoute = require("./routes/Episode");
 //==
 const app = express();
 const bodyparser = require("body-parser");
@@ -37,3 +38,4 @@ app.use(bodyparser.json());
 app.use("/case", CaseRoute);
 app.use("/data", DataRoute);
 app.use("/blog", BlogRoute);
+app.use("/episode", EpisodeRoute);
