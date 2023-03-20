@@ -6,6 +6,7 @@ const episodeSchema = new Schema(
     link: { type: String, required: true },
     title: { type: String, required: true },
     duration: { type: String, required: true },
+    description: { type: String, required: true },
   },
   { timestamps: true }
 );

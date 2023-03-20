@@ -45,9 +45,10 @@ const addEpisode = (req, res) => {
   //   return;
   // }
   var episode = new Episode({
-    link: req.body.image,
+    link: req.body.link,
     title: req.body.title,
-    duration: req.body.post,
+    duration: req.body.duration,
+    description: req.body.description,
   });
 
   episode

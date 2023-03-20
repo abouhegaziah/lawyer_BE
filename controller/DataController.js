@@ -4,6 +4,7 @@ const uploadFile = async (req, res) => {
     const storage = require("../db.js");
     // Grab the file
     const file = req.file;
+    console.log(file);
     if (file) {
       // Format the filename
       const timestamp = Date.now();
