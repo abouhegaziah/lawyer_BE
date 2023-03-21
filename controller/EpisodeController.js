@@ -14,6 +14,21 @@ const index = (req, res) => {
       });
     });
 };
+const latest = (req, res) => {
+  Episode.find()
+    .sort({ _id: -1 })
+    .limit(3)
+    .then((response) => {
+      return res.status(200).send({
+        response,
+      });
+    })
+    .catch((error) => {
+      return res.status(300).send({
+        message: "Something went wrong",
+      });
+    });
+};
 
 const addEpisode = (req, res) => {
   // const schema = Joi.object()
@@ -46,9 +61,11 @@ const addEpisode = (req, res) => {
   // }
   var episode = new Episode({
     link: req.body.link,
+    image: req.body.image,
     title: req.body.title,
     duration: req.body.duration,
     description: req.body.description,
+    number: req.body.number,
   });
 
   episode
@@ -73,4 +90,5 @@ const addEpisode = (req, res) => {
 module.exports = {
   index,
   addEpisode,
+  latest,
 };
