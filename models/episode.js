@@ -5,8 +5,10 @@ const episodeSchema = new Schema(
   {
     link: { type: String, required: true },
     title: { type: String, required: true },
+    title_ar: { type: String },
     duration: { type: String, required: true },
     description: { type: String, required: true },
+    description_ar: { type: String },
     image: { type: String, required: true },
     number: { type: String, required: true },
   },

@@ -48,6 +48,8 @@ const addBlog = (req, res) => {
     image: req.body.image,
     title: req.body.title,
     post: req.body.post,
+    title_ar: req.body.title_ar,
+    post_ar: req.body.post_ar,
   });
 
   blog

@@ -63,8 +63,10 @@ const addEpisode = (req, res) => {
     link: req.body.link,
     image: req.body.image,
     title: req.body.title,
+    title_ar: req.body.title_ar,
     duration: req.body.duration,
     description: req.body.description,
+    description_ar: req.body.description_ar,
     number: req.body.number,
   });
 
