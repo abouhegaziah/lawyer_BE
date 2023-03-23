@@ -99,8 +99,69 @@ const addCase = (req, res) => {
         });
     });
 };
+const aboutUs = (req, res) => {
+  // console.log(req.body);
+  // var c = new Case({
+  //   name_1: req.body.name_1,
+  //   number_1: req.body.number_1,
+  //   email_1: req.body.email_1,
+  //   address_1: req.body.address_1,
+  //   name_2: req.body.name_2,
+  //   number_2: req.body.number_2,
+  //   email_2: req.body.email_2,
+  //   address_2: req.body.address_2,
+  //   subject: req.body.subject,
+  //   case: req.body.case,
+
+  var transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "afwmalaky3@gmail.com",
+      pass: "jzffvsrwkcbpwzii",
+    },
+  });
+
+  var mailOptions = {
+    from: "afwmalaky3@gmail.com",
+    to: "afwmalaky@gmail.com",
+    subject: "New Case - " + req.body.name,
+    text: "sent form " + req.body.email + " - " + req.body.message,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+  return res.status(200).send({
+    response,
+  });
+  // });
+
+  // c.save()
+  //   .then((response) => {
+
+  //     return res.status(200).send({
+  //       response,
+  //     });
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //     if (error.code == 11000)
+  //       return res.status(300).send({
+  //         message: "E-mail or phone number is used before",
+  //       });
+  //     else
+  //       return res.status(300).send({
+  //         message: "Something went wrong",
+  //       });
+  //   });
+};
 
 module.exports = {
   index,
   addCase,
+  aboutUs,
 };
